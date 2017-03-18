@@ -1,0 +1,18 @@
+#!/bin/sh
+
+if [ -z "${JVM_MIN_HEAP_SIZE}" ] || [ -z "${JVM_MAX_HEAP_SIZE}" ] || [ -z "${JVM_HEAP_REGION_SIZE}" ]; then
+    echo "environments variables not defined"
+    exit 1
+fi
+
+cat <<EOS > /opt/presto/etc/jvm.config
+-server
+-Xms${JVM_MIN_HEAP_SIZE}
+-Xmx${JVM_MAX_HEAP_SIZE}
+-XX:+UseG1GC
+-XX:G1HeapRegionSize=${JVM_HEAP_REGION_SIZE}
+-XX:+UseGCOverheadLimit
+-XX:+ExplicitGCInvokesConcurrent
+-XX:+HeapDumpOnOutOfMemoryError
+-XX:+ExitOnOutOfMemoryError
+EOS

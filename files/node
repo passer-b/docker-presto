@@ -1,0 +1,12 @@
+#!/bin/sh
+
+if [ -z "${NODE_ID}" ]; then
+    echo "environments variables not defined"
+    exit 1
+fi
+
+cat <<EOS > /opt/presto/etc/node.properties
+node.environment=production
+node.id=${NODE_ID}
+node.data-dir=/var/presto/data
+EOS

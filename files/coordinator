@@ -1,0 +1,16 @@
+#!/bin/sh
+
+if [ -z "${MAX_MEMORY}" ] || [ -z "${MAX_MEMORY_PER_NODE}" ] || [ -z "${DISCOVERY_URI}" ]; then
+    echo "environments variables not defined"
+    exit 1
+fi
+
+cat <<EOS > /opt/presto/etc/config.properties
+coordinator=true
+node-scheduler.include-coordinator=false
+http-server.http.port=8080
+query.max-memory=${MAX_MEMORY}
+query.max-memory-per-node=${MAX_MEMORY_PER_NODE}
+discovery-server.enabled=true
+discovery.uri=${DISCOVERY_URI}
+EOS

@@ -1,0 +1,5 @@
+# ignore catalogs
+etc/catalog/*
+
+# allow empty directory
+!.gitkeep

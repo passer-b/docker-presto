@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ -z "${LOG_LEVEL}" ]; then
+    echo "environments variables not defined"
+    exit 1
+fi
+
+cat <<EOS > /opt/presto/etc/log.properties
+com.facebook.presto=${LOG_LEVEL}
+EOS
