@@ -1,7 +1,7 @@
 FROM alpine:latest
 MAINTAINER Shota Kondo <der.passant.b@gmail.com>
 
-ENV PRESTO_VERSION 0.178
+ENV PRESTO_VERSION 0.179
 
 RUN apk add --no-cache --virtual .fetch-deps \
 		curl \
